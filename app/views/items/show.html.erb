@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+<p>
+    <strong>Picture:</strong>
+    <%= image_tag @item.picture.url(:large) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Start bid:</strong>
+  <%= @item.start_bid %>
+</p>
+
+<p>
+  <strong>Bid increment:</strong>
+  <%= @item.bid_increment %>
+</p>
+
+<p>
+  <strong>Auction:</strong>
+  <%= @item.auction_id %>
+</p>
+
+<p>
+  <strong>Is donation:</strong>
+  <%= @item.is_donation %>
+</p>
+
+<p>
+  <strong>Buyitnow:</strong>
+  <%= @item.buyitnow %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> 
+<%= link_to 'Items List', auction_items_auction_path(@item.auction_id) %>

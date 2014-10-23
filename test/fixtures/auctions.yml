@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  auctioneer: 
+  title: MyString
+  description: MyText
+  start_date: 2014-09-23 16:28:13
+  end_date: 2014-09-23 16:28:13
+  display: false
+  winner_message: MyString
+
+two:
+  auctioneer: 
+  title: MyString
+  description: MyText
+  start_date: 2014-09-23 16:28:13
+  end_date: 2014-09-23 16:28:13
+  display: false
+  winner_message: MyString

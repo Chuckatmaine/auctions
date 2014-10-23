@@ -1,0 +1,46 @@
+<h1>Bidding on item: <%= @bid.item.title %></h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @bid.item.title %>
+</p>
+<p>
+    <strong>Picture:</strong>
+    <%= image_tag @bid.item.picture.url(:large) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @bid.item.description %>
+</p>
+
+<p>
+  <strong>Start bid:</strong>
+  <%= @bid.item.start_bid %>
+</p>
+
+<p>
+  <strong>Bid increment:</strong>
+  <%= @bid.item.bid_increment %>
+</p>
+
+<p>
+  <strong>Auction:</strong>
+  <%= @bid.item.auction_id %>
+</p>
+
+<p>
+  <strong>Is donation:</strong>
+  <%= @bid.item.is_donation %>
+</p>
+
+<p>
+  <strong>Buyitnow:</strong>
+  <%= @bid.item.buyitnow %>
+</p>
+
+
+<%= render 'newbid' %>
+
+<%= link_to 'Items list', auction_items_auction_path(@bid.item.auction_id) %>

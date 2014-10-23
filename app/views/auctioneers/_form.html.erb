@@ -1,0 +1,23 @@
+<%= form_for(@auctioneer) do |f| %>
+  <% if @auctioneer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@auctioneer.errors.count, "error") %> prohibited this auctioneer from being saved:</h2>
+
+      <ul>
+      <% @auctioneer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.collection_select(:user_id, User.all, :id, :email) %>
+  </div>
+  <div class="field">
+   <%= f.collection_select(:auction_id, Auction.all, :id, :title) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

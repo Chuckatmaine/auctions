@@ -1,0 +1,64 @@
+<BODY
+  BGCOLOR="#FFFFFF"
+  TEXT="#000000"
+  LINK="#0000FF"
+  VLINK="#FF66FF"
+  ALINK="#FF0000"
+  >                      
+
+<h1><center><%= @auction.title %></center></h1>
+
+
+<table>
+  <tr>
+    <th>Title </th>
+    <th>Benefit Description </th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Contact name</th>
+    <th>Contact email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td><%= @auction.title %> </td>
+    <td><%= @auction.description %>  </td>
+    <td><%= @auction.start_date %>  </td>
+    <td><%= @auction.end_date %>  </td>
+    <td><%= @fullname%></td>
+    <td><%= @auction.auctioneers.first.user.email %>  </td>
+  </tr>
+</table>
+
+<br />
+
+<table>
+  <tr>
+    <th></th>
+    <th>Item Name</th>
+    <th>Description</th>
+    <th>Start bid</th>
+    <th>High bid</th>
+  </tr>
+
+<% @auction.items.each do |item| %>
+  <tr>
+    <td>
+      <%if item.photo.exists? then  %>
+        <%= image_tag item.photo.url(:small) %>
+      <% end %>
+        </td>
+    <td><%= item.name %></td>
+    <td><%= item.description %></td>
+    <td>$<%= item.start_bid %></td>
+    <td>$<%= item.bids.maximum("amount") || "0" %></td>
+    <td><%= link_to 'place bid', new_bid_path(:item_id => item) %></td>
+ </tr>
+<% end %>
+</table>
+
+<br />
+
+

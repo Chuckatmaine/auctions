@@ -1,0 +1,28 @@
+<h1>Listing auctioneers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Auctioneer</th>
+      <th>Auction</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @auctioneers.each do |auctioneer| %>
+      <% fullname = auctioneer.user.first_name + ' ' + auctioneer.user.last_name%>
+      <tr>
+        <td><%= fullname %></td>
+        <td><%= auctioneer.auction.title %></td>
+        <td><%= link_to 'Show', auctioneer %></td>
+        <td><%= link_to 'Edit', edit_auctioneer_path(auctioneer) %></td>
+        <td><%= link_to 'Destroy', auctioneer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Auctioneer', new_auctioneer_path %>

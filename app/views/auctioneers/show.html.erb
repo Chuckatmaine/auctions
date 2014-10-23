@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @auctioneer.user_id %>
+</p>
+
+<p>
+  <strong>Auction:</strong>
+  <%= @auctioneer.auction_id %>
+</p>
+
+<%= link_to 'Edit', edit_auctioneer_path(@auctioneer) %> |
+<%= link_to 'Back', auctioneers_path %>

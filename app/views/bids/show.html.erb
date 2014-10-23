@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bid.user.first_name %> <%=@bid.user.last_name %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @bid.item.title %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @bid.amount %>
+</p>
+
+<%= link_to 'Back', :back %>

@@ -1,0 +1,22 @@
+
+   <fieldset>
+     <%= f.label :title, "Item" %>
+     <%= f.text_area :title %><br>
+     <%= f.label :picture %>
+     <%= f.file_field :picture %><br>
+     <%= f.label :description %>
+     <%= f.text_area :description %><br>
+     <%= f.check_box :buyitnow %>
+     <%= f.label :buyitnow, "Buy it now : " %>
+     <%= f.label :qty, "Quantity" %>
+     <%= f.number_field :qty %><br>
+     <%= f.check_box :is_donation %>
+     <%= f.label :is_donation, "Is a Donation" %><br>
+     <%= f.label :start_bid %>
+     <%= f.text_field :start_bid %>
+     <%= f.label :bid_increment %>
+     <%= f.text_field :bid_increment %>
+   </fieldset>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
