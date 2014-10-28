@@ -6,7 +6,6 @@
   <%= @bid.item.title %>
 </p>
 <p>
-    <strong>Picture:</strong>
     <%= image_tag @bid.item.picture.url(:large) %>
 </p>
 
@@ -40,7 +39,17 @@
   <%= @bid.item.buyitnow %>
 </p>
 
-
-<%= render 'newbid' %>
-
+<% if @bid.item.buyitnow %>
+<p>
+  <strong>Quantity available:</strong>
+  <%= @bid.item.qty %>
+</p>
+   <%= render 'newbuyitnow' %>
+<% else %>
+<% if @bid.item.is_donation %>
+   <%= render 'newdonation' %>
+<% else %>
+   <%= render 'newbid' %>
+<% end %>
+<% end %>
 <%= link_to 'Items list', auction_items_auction_path(@bid.item.auction_id) %>

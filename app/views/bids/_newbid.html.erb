@@ -20,6 +20,6 @@
     <%= f.number_field :amount %>
   </div>
   <div class="actions">
-    <%= f.submit :confirm => 'OK to submit this bid' %>
+    <%= f.submit "Submit Bid", data: {confirm: "OK to submit this bid?"} %>
   </div>
 <% end %>

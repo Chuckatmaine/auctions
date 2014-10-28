@@ -51,4 +51,4 @@ production:
   <<: *default
   database: auctions_production
   username: auctions
-  password: <%= ENV['AUCTIONS_DATABASE_PASSWORD'] %>
+  password: go05cubs 

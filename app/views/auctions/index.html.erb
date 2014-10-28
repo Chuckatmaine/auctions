@@ -12,6 +12,7 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Enabled</th>
+      <th>Tally</th>
     </tr>
   </thead>
 
@@ -29,10 +30,11 @@
         <td><%= auction.start_date %></td>
         <td><%= auction.end_date %></td>
         <td><%= auction.display %></td>
+        <% if @owner %> <td><%= auction.tally %></td><% end %>
         <td><%= link_to 'Enter Auction', auction %></td>
         <% if user_signed_in? %>
-          <% if auction.auctioneers.detect { |a| a["user_id"] == current_user.id } %><td><%= link_to 'Edit', edit_auction_path(auction) %></td><% end %>
-          <% if auction.auctioneers.detect { |a| a["user_id"] == current_user.id } %><td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
+          <% if @owner %><td><%= link_to 'Edit', edit_auction_path(auction) %></td><% end %>
+          <% if @owner %><td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
         <% end %>
       </tr>
     <% end %>

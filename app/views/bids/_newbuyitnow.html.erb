@@ -1,0 +1,29 @@
+
+<%= form_for(@bid) do |f| %>
+  <% if @bid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+
+      <ul>
+      <% @bid.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+   Minimum bid is : $<%= @bid.minimum_bid %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :item_id, :value => @bid.item.id %>
+    <%= f.label :amount, "Buy it now price is:" %><br>
+    <%= f.number_field :amount, :value => @bid.item.start_bid  %>
+  </div>
+  <div class="field">
+    <%= f.label :qty, "Quantity to purchase (cost each:)" %><%= @bid.item.start_bid %><br>
+    <%= f.select :qty, (1..@bid.item.qty)  %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Purchase Item", data: {confirm: "OK to submit this bid?"} %>
+  </div>
+<% end %>

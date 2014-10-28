@@ -18,7 +18,10 @@ class BidsController < ApplicationController
   # GET /bids/new
   def new
     @bid = Bid.new
-    @bid.item_id = params[:item]
+    @item = Item.find(params[:item])
+ #   @item = Item.find(params[:item])
+    @bid.item_id = @item.id 
+    @bid.qty = 1
   end
 
   # GET /bids/1/edit
@@ -30,8 +33,18 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
     @bid.user_id = current_user.id
+    if @bid.qty.blank? 
+       @bid.qty = 1
+    end
+    if @bid.item.buyitnow 
+      @bid.item.qty -= @bid.qty
+    end
+    if outbid_user = outbid
+      # mail message
+    end
     respond_to do |format|
       if @bid.save
+        @bid.item.update_attributes(:qty => @bid.item.qty)
         format.html { redirect_to @bid.item, notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: @bid }
       else
@@ -40,6 +53,12 @@ class BidsController < ApplicationController
       end
     end
 
+end
+def outbid
+    if bid = @bid.item.bids.last 
+      return bid.user_id
+      else return null
+    end
 end
 
   # PATCH/PUT /bids/1
@@ -74,6 +93,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:user_id, :item_id, :amount)
+      params.require(:bid).permit(:user_id, :item_id, :amount, :qty)
     end
 end

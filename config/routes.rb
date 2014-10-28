@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :auctions do
     member do
       get 'auction_items'
+      get 'tally'
     end
     resources :items
   end 

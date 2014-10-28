@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @auction = Auction.find(params[:auction])
     @item.qty = 1
     @item.bids.build
   end
@@ -32,13 +33,14 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @auction = Auction.find(params[:auction])
   end
 
   # POST /items
   # POST /items.json
   def create
     @item = Item.new(item_params)
-    @item.user_id = current_user.id 
+    #@item.user_id = current_user.id 
     if !@item.buyitnow then  @item.qty = 1; end
     respond_to do |format|
       if @item.save
@@ -83,6 +85,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture,:qty, auctions_attributes:[:id], bids_attributes:[:item_id, :user_id, :id, :amount])
+      params.require(:item).permit(:title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture,:qty, auctions_attributes:[:id], bids_attributes:[:item_id, :user_id, :id, :amount, :qty])
     end
 end

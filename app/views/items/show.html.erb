@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Title:</strong>
@@ -6,7 +5,7 @@
 </p>
 <p>
     <strong>Picture:</strong>
-    <%= image_tag @item.picture.url(:large) %>
+    <%= image_tag @item.picture.url(:larger) %>
 </p>
 
 <p>
@@ -39,5 +38,6 @@
   <%= @item.buyitnow %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> 
+<%= link_to 'Edit', edit_item_path(@item, auction: @item.auction_id) %> 
 <%= link_to 'Items List', auction_items_auction_path(@item.auction_id) %>
+<br><br>

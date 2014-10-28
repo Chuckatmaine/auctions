@@ -9,19 +9,22 @@ class AuctionsController < ApplicationController
   def home
   end
   def index
-  #if User.find   
-  #    @auctions = Auction.joins(:auctioneers).where('auctioneers.user_id = ?', current_user.id)
-  #  else
+    if user_signed_in? 
+      @owner = owner
+    end
       @auctions = Auction.all 
-  #  end
   end
 
   # GET /auctions/1
   # GET /auctions/1.json
   def show
     if user_signed_in? 
-      @owner = owner 
+    @owner = owner 
     end
+  end
+
+  def tally
+    
   end
 
   # GET /auctions/new
@@ -90,7 +93,10 @@ class AuctionsController < ApplicationController
   end
 
   def owner
-     return @auction.auctioneers.detect { |o| o["user_id"] == current_user.id }
+     if @auction
+       return @auction.auctioneers.detect { |o| o["user_id"] == current_user.id }
+     else return 0
+     end
   end
 
   private
@@ -100,6 +106,6 @@ class AuctionsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def auction_params
-      params.require(:auction).permit(:id, :title, :description, :start_date, :end_date, :display, :winner_message, :logo, items_attributes:[:id, :title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture, :picture_file_name, :picture_contnet_type, :picture_file_size, :picture_updated_at, :qty], bids_attributes:[:id, :user_id, :item_id, :amount, :created_at, :updated_at] )
+      params.require(:auction).permit(:id, :title, :description, :start_date, :end_date, :display, :winner_message, :logo, items_attributes:[:id, :title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture, :picture_file_name, :picture_contnet_type, :picture_file_size, :picture_updated_at, :qty], bids_attributes:[:id, :user_id, :item_id, :amount, :created_at, :updated_at, :qty] )
     end
 end

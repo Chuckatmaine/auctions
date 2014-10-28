@@ -1,0 +1,3 @@
+I, [2014-10-26T15:57:32.926041 #9573]  INFO -- : Migrating to CreateUsers (20140911212248)
+I, [2014-10-26T15:57:33.056181 #9573]  INFO -- : Migrating to AddDeviseToUsers (20140923170900)
+E, [2014-10-26T15:57:33.057921 #9573] ERROR -- : Mysql2::Error: Duplicate column name 'email': ALTER TABLE `users` ADD `email` varchar(255) DEFAULT '' NOT NULL

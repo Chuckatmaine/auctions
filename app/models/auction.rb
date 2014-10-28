@@ -25,4 +25,22 @@ validates_attachment :logo,
     :presence => true,
     :size => { :in => 0..20.megabytes },
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
+
+
+ def tally
+   tally = 0
+   @items = self.items.all
+   @items.each do |i|
+     if !i.bids.last.blank?
+       if i.buyitnow
+         i.bids.each do |b|
+           tally += b.amount * b.qty
+         end
+       else
+         tally += i.bids.last.amount
+       end
+     end
+   end
+   return tally
+ end
 end
