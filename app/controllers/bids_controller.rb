@@ -21,7 +21,6 @@ class BidsController < ApplicationController
     @item = Item.find(params[:item])
  #   @item = Item.find(params[:item])
     @bid.item_id = @item.id 
-    @bid.qty = 1
   end
 
   # GET /bids/1/edit
@@ -33,9 +32,6 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
     @bid.user_id = current_user.id
-    if @bid.qty.blank? 
-       @bid.qty = 1
-    end
     if @bid.item.buyitnow 
       @bid.item.qty -= @bid.qty
     end

@@ -14,6 +14,12 @@
 </p>
 
 <p>
+  <strong>Estimated value:</strong>
+  <%= @item.value %>
+</p>
+
+
+<p>
   <strong>Start bid:</strong>
   <%= @item.start_bid %>
 </p>
@@ -37,7 +43,7 @@
   <strong>Buyitnow:</strong>
   <%= @item.buyitnow %>
 </p>
-
 <%= link_to 'Edit', edit_item_path(@item, auction: @item.auction_id) %> 
 <%= link_to 'Items List', auction_items_auction_path(@item.auction_id) %>
+<br><br>
 <br><br>

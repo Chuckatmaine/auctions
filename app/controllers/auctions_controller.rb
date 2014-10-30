@@ -54,6 +54,7 @@ class AuctionsController < ApplicationController
     @auctioneer.user_id = current_user.id
     respond_to do |format|
       if @auction.save && @auctioneer.save
+        Notifier.welcome(current_user.email).deliver
         format.html { redirect_to @auction, notice: 'Auction was successfully created.' }
         format.json { render :show, status: :created, location: @auction }
       else

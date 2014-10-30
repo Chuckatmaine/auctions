@@ -11,7 +11,8 @@ has_attached_file :picture,
   :thumb    => ['100x100#',  :jpg, :quality => 70],
   :preview  => ['480x480#',  :jpg, :quality => 70],
   :large    => ['600>',      :jpg, :quality => 70],
-  :larger    => ['800>',     :jpg, :quality => 70],
+  :auction1 => ['x700',      :jpg, :quality => 70],
+  :larger   => ['x600',      :jpg, :quality => 70],
   :retina   => ['1200>',     :jpg, :quality => 30]
 },
 :convert_options => {

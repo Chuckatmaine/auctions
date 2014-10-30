@@ -10,8 +10,9 @@
       <th><strong>Picture:</strong></th>
       <th>Title</th>
       <th>Description</th>
-      <th>Buyitnow</th>
-      <th>Quantity</th>
+      <th>Buy it now</th>
+      <th>Quantity available</th>
+      <th>Estimated value</th>
       <th>Start bid</th>
       <th>Bid increment</th>
       <th>Donation</th>
@@ -27,10 +28,16 @@
         <td><%= item.description %></td>
         <td><%= item.buyitnow %></td>
         <td><%= item.qty %></td>
+        <td><%= item.value %></td>
         <td><%= item.start_bid %></td>
         <td><%= item.bid_increment %></td>
         <td><%= item.is_donation %></td>
-        <% if item.buyitnow %><td><%= link_to 'Buy this item now', new_bid_path(item: item.id) %></td>
+        <% if item.buyitnow  %>
+            <% if item.qty > 0 %>
+              <td><%= link_to 'Buy this item now', new_bid_path(item: item.id) %></td>
+            <% else %>
+              <td>SOLD OUT</td>
+            <% end %>
         <% else %>
           <% if item.is_donation %><td><%= link_to 'Make a donation', new_bid_path(item: item.id) %></td>
            <% else %><td><%= link_to 'Bid on this item', new_bid_path(item: item.id) %></td><% end %>

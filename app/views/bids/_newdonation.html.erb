@@ -16,8 +16,9 @@
   </div>
   <div class="field">
     <%= f.hidden_field :item_id, :value => @bid.item.id %>
+    <%= f.hidden_field :qty, :value => 1 %>
     <%= f.label :amount, "Enter your donation amount:" %><br>
-    <%= f.number_field :amount %>
+    <%= f.number_field(:amount, in: 1.0..10000.0) %>
   </div>
   <div class="actions">
     <%= f.submit "Submit Donation", data: {confirm: "OK to submit this donation?"} %>

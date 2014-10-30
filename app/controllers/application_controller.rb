@@ -5,14 +5,12 @@ class ApplicationController < ActionController::Base
 #  before_action :authenticate_user!
     def authenticate_admin!
       unless current_user.is_admin
-        flash[:error] = "You must be an admin to acces this page"
-        redirect_to root_path
+        redirect_to root_path, alert: "You must be an admin to acces that page"
       end
     end
     def authenticate_auctioneer!
       unless current_user.is_auctioneer || current_user.is_admin
-        flash[:error] = "You must be an auctioneer to acces this page"
-        redirect_to root_path
+        redirect_to root_path, alert: "You must be an auctioneer to acces that page"
       end
     end
 end

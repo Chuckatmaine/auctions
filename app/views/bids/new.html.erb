@@ -6,7 +6,7 @@
   <%= @bid.item.title %>
 </p>
 <p>
-    <%= image_tag @bid.item.picture.url(:large) %>
+    <%= image_tag @bid.item.picture.url(:auction1) %>
 </p>
 
 <p>
@@ -53,3 +53,4 @@
 <% end %>
 <% end %>
 <%= link_to 'Items list', auction_items_auction_path(@bid.item.auction_id) %>
+<br><br>
