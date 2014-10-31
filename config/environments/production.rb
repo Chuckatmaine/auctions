@@ -94,8 +94,8 @@ Rails.application.configure do
   domain: "mandrillapp.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "Auctions.CSBaker@gmail.com",
-  password: "WjCp_2119M44BHB3U2NosA"
+  user_name: ENV['GMAIL_USERNAME'],
+  password: ENV['GMAIL_PASSWORD']
 }
 
 end
