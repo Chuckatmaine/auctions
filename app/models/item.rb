@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
    has_many :bids
-   belongs_to :Auction
+   belongs_to :auction
    accepts_nested_attributes_for :bids
 #   validate :minbid
 has_attached_file :picture, 
@@ -10,7 +10,7 @@ has_attached_file :picture,
 :styles => {
   :thumb    => ['100x100#',  :jpg, :quality => 70],
   :preview  => ['480x480#',  :jpg, :quality => 70],
-  :large    => ['600>',      :jpg, :quality => 70],
+  :large    => ['600x',      :jpg, :quality => 70],
   :auction1 => ['x700',      :jpg, :quality => 70],
   :larger   => ['x600',      :jpg, :quality => 70],
   :retina   => ['1200>',     :jpg, :quality => 30]

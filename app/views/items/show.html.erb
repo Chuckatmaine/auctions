@@ -5,7 +5,11 @@
 </p>
 <p>
     <strong>Picture:</strong>
-    <%= image_tag @item.picture.url(:larger) %>
+    <%= image_tag @item.picture.url(:large) %>
+</p>
+<p>
+  <strong>Order:</strong>
+  <%= @item.seq %>
 </p>
 
 <p>

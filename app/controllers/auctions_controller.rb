@@ -42,7 +42,7 @@ class AuctionsController < ApplicationController
 
   def auction_items
     @auction = Auction.find(params[:id])
-    @items = @auction.items.all
+    @items = @auction.items.all.order(seq: :asc)
     @owner = owner
   end 
 

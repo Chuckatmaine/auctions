@@ -36,6 +36,7 @@ class BidsController < ApplicationController
       @bid.item.qty -= @bid.qty
     end
     if outbid_user = outbid
+        UserMailer.outbid(@bid).deliver
       # mail message
     end
     respond_to do |format|
@@ -53,7 +54,7 @@ end
 def outbid
     if bid = @bid.item.bids.last 
       return bid.user_id
-      else return null
+      else return 
     end
 end
 

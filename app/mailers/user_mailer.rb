@@ -1,14 +1,15 @@
 class UserMailer < ActionMailer::Base
   default from: "Auctions.CSBaker@gmail.com"
 
-  def welcome_mail(email)
+  def welcome(user)
     @user = user
     @url = "http://railsme.asuscomm.com/auctions/"
-    mail(:to => email, :subject => "Welcome to the Auctions site").deliver
+    mail(:to => user.email, :subject => "Welcome to the Auctions site").deliver
   end
-  def outbid_email(user)
-     @user = user
-     @url = "http://railsme.asuscomm.com/auctions/"
+  def outbid(bid)
+     @bid = bid
+     @user = @bid.user
+     @url = "http://railsme.asuscomm.com/auctions/auctions/" + @bid.item.auction_id.to_s + "/auction_items/"
      mail(to: @user.email, subject: 'You have been outbid!')
   end
 end

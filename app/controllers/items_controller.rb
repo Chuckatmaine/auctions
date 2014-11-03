@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @auction = Auction.find(params[:auction])
+    @oldseq = Item.find(params[:id]).seq
   end
 
   # POST /items
@@ -42,7 +43,19 @@ class ItemsController < ApplicationController
 
     @item = Item.new(item_params)
     #@item.user_id = current_user.id 
-    if !@item.buyitnow then  @item.qty = 1; end
+    if !@item.buyitnow 
+      @item.qty = 1; 
+    end
+    if @item.seq.blank? 
+       @item.seq = Item.maximum("seq") + 1
+    else 
+        @items = @item.auction.items.all
+        @items.each do |i|
+          if i.seq >= @item.seq 
+            i.seq += 1 
+          end
+        end
+    end
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -58,6 +71,24 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
+      @list = @item.auction.items.all
+      temp = Item.new(item_params)
+      item = Item.find_by seq: @item.seq, id: @item.id #Item sequence was changed and collides
+     # logger.info {">>>>>item   #{item.id} #{item.seq} temp #{temp.seq}  <<<<"}
+      @list.each do |l|
+     # logger.info {">>>>>   #{item.seq}  #{temp.seq}  <<<<"}
+            if item.seq > temp.seq   # dir = up
+              if ((l.seq < item.seq) && (l.seq >= temp.seq)) 
+                  l.seq += 1 
+                  l.save
+              end
+             else  # dir = down
+              if ((l.seq > item.seq) && (l.seq <= temp.seq)) 
+                  l.seq -= 1 
+                  l.save
+              end
+             end
+      end
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
@@ -86,6 +117,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture,:qty, :value, auctions_attributes:[:id], bids_attributes:[:item_id, :user_id, :id, :amount, :qty])
+      params.require(:item).permit(:title, :seq, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture,:qty, :value,auctions_attributes:[:id], bids_attributes:[:item_id, :user_id, :id, :amount, :qty])
     end
 end

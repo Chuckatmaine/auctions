@@ -10,10 +10,15 @@
       </ul>
     </div>
   <% end %>
+  <% @seq = @item.seq %>
 
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :seq %><br>
+    <%= f.number_field :seq %>
   </div>
 <div class="field">
     <%= f.label :picture %><br>
