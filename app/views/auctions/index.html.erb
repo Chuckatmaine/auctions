@@ -11,8 +11,10 @@
       <th>Description</th>
       <th>Start date</th>
       <th>End date</th>
-      <th>Enabled</th>
-      <th>Tally</th>
+      <% if @owner %>
+        <th>Enabled</th>
+        <th>Tally</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -29,15 +31,17 @@
         <td><%= auction.description %></td>
         <td><%= auction.start_date %></td>
         <td><%= auction.end_date %></td>
-        <td><%= auction.display %></td>
-        <% if @owner %> <td><%= auction.tally %></td><% end %>
+        <% if @owner %>
+          <td><%= auction.display %></td>
+          <td><%= auction.tally %></td>
+        <% end %>
         <td><%= link_to 'Enter Auction', auction %></td>
         <% if user_signed_in? %>
           <% if @owner %><td><%= link_to 'Edit', edit_auction_path(auction) %></td><% end %>
           <% if @owner %><td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
         <% end %>
-      </tr>
-    <% end %>
+       </tr>
+       <% end %>
   </tbody>
 </table>
 <%= link_to 'Back', :back %>

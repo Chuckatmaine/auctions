@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shark:</strong>
+  <%= @tag.shark_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @tag.date %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @tag.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @tag.longitude %>
+</p>
+
+<p>
+  <strong>Offshore:</strong>
+  <%= @tag.offshore %>
+</p>
+
+<p>
+  <strong>Gt5miles:</strong>
+  <%= @tag.gt5miles %>
+</p>
+
+<p>
+  <strong>Angler:</strong>
+  <%= @tag.angler_id %>
+</p>
+
+<p>
+  <strong>Tagger:</strong>
+  <%= @tag.tagger_id %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @tag.comments %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @tag.number %>
+</p>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

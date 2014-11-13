@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101003422) do
+ActiveRecord::Schema.define(version: 20141112181209) do
 
   create_table "auctioneers", force: true do |t|
     t.integer  "user_id"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20141101003422) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "payment"
+    t.boolean  "finalized"
   end
 
   create_table "bids", force: true do |t|
@@ -73,6 +75,28 @@ ActiveRecord::Schema.define(version: 20141101003422) do
     t.integer  "seq"
   end
 
+  create_table "sharks", force: true do |t|
+    t.integer  "tag_id"
+    t.string   "species"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.integer  "shark_id"
+    t.datetime "date"
+    t.float    "latitude",   limit: 24
+    t.float    "longitude",  limit: 24
+    t.boolean  "offshore"
+    t.boolean  "gt5miles"
+    t.integer  "angler_id"
+    t.integer  "tagger_id"
+    t.text     "comments"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -96,6 +120,8 @@ ActiveRecord::Schema.define(version: 20141101003422) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

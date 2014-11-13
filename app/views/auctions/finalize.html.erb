@@ -1,0 +1,46 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+    <center><%= image_tag @auction.logo.url(:large) %></center>
+</p>
+<p>
+  <strong>FINALIZE! Auction:</strong>
+  <%= @auction.title %>
+</p>
+<p>
+  <strong>Auctioneers:</strong>
+  <% @auction.auctioneers.each do |auctioneer| %>
+  <% fullname = auctioneer.user.first_name + ' ' + auctioneer.user.last_name%>
+  <%= fullname  %>,
+  <% end %></td>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @auction.description %>
+</p>
+<p>
+  <strong>Payment Methods:</strong>
+  <%= @auction.payment %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @auction.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @auction.end_date %>
+</p>
+
+<p>
+  <strong>Display:</strong>
+  <%= @auction.display %>
+</p>
+<h1>Finalize auction</h1>
+
+<%= render 'finalize' %>
+
+<%= link_to 'Show', @auction %> |
+<%= link_to 'Back', auctions_path %>

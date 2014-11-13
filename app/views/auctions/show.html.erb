@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-    <center><%= image_tag @auction.logo.url(:logo) %></center>
+    <center><%= image_tag @auction.logo.url(:large) %></center>
 </p>
 <p>
   <strong>Auction:</strong>
@@ -17,6 +17,10 @@
 <p>
   <strong>Description:</strong>
   <%= @auction.description %>
+</p>
+<p>
+  <strong>Payment Methods:</strong>
+  <%= @auction.payment %>
 </p>
 
 <p>
@@ -34,5 +38,6 @@
   <%= @auction.display %>
 </p>
 <% if @owner %><%= link_to 'Edit', edit_auction_path(@auction) %><% end %> 
+<% if @owner %><%= link_to 'Finalize', finalize_auction_path(@auction) %><% end %> 
 <%= link_to 'Items', auction_items_auction_path(@auction) %> 
 <%= link_to 'Back', auctions_path %>

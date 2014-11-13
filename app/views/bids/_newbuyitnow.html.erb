@@ -12,15 +12,12 @@
     </div>
   <% end %>
   <div class="field">
-   Minimum bid is : $<%= @bid.minimum_bid %>
-  </div>
-  <div class="field">
     <%= f.hidden_field :item_id, :value => @bid.item.id %>
-    <%= f.label :amount, "Buy it now price is:" %><br>
-    <%= f.number_field :amount, :value => @bid.item.start_bid  %>
+    <%= f.label :amount, "Buy it now price is: $" %>
+    <%= @bid.item.start_bid  %><br>
   </div>
   <div class="field">
-    <%= f.label :qty, "Quantity to purchase (cost each:)" %><%= @bid.item.start_bid %><br>
+    <%= f.label :qty, "Quantity to purchase (cost each: $" %><%= @bid.item.start_bid %>)<br>
     <%= f.select :qty, (1..@bid.item.qty)  %>
   </div>
   <div class="actions">

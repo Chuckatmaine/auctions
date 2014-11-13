@@ -9,14 +9,15 @@
     <tr>
       <th><strong>Picture:</strong></th>
       <th>Title</th>
-      <th>Order</th>
+      <% if @owner %><th>Order</th><% end %>
       <th>Description</th>
       <th>Buy it now</th>
       <th>Quantity available</th>
       <th>Estimated value</th>
       <th>Start bid</th>
       <th>Bid increment</th>
-      <th>Donation</th>
+      <th>Current high bid</th>
+      <% if @owner %><th>Donation</th><% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,14 +27,15 @@
       <tr>
         <td><%= image_tag item.picture.url(:thumb) %></td>
         <td><%= item.title %></td>
-        <td><%= item.seq %></td>
+        <% if @owner %><td><%= item.seq %></td><% end %>
         <td><%= item.description %></td>
         <td><%= item.buyitnow %></td>
         <td><%= item.qty %></td>
         <td><%= item.value %></td>
         <td><%= item.start_bid %></td>
         <td><%= item.bid_increment %></td>
-        <td><%= item.is_donation %></td>
+        <td><%= item.bids.maximum(:amount) %></td>
+        <% if @owner %><td><%= item.is_donation %></td><% end %>
         <% if item.buyitnow  %>
             <% if item.qty > 0 %>
               <td><%= link_to 'Buy this item now', new_bid_path(item: item.id) %></td>

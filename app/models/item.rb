@@ -19,6 +19,7 @@ has_attached_file :picture,
   :thumb    => '-set colorspace sRGB -strip',
   :preview  => '-set colorspace sRGB -strip',
   :large    => '-set colorspace sRGB -strip',
+  :auction1    => '-set colorspace sRGB -strip',
   :larger   => '-set colorspace sRGB -strip',
   :retina   => '-set colorspace sRGB -strip -sharpen 0x0.5'
 }

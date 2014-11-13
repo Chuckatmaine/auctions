@@ -1,5 +1,6 @@
-Class UserObserver < ActiveRecord::Observer
+class UserObserver < ActiveRecord::Observer
   # We check if it's a new user
+  observe :user
   def before_save(user)
     @is_new_record = user.new_record?
     true

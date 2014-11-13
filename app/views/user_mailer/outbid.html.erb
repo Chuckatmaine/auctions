@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Outbid notification from the auction: <%= @bid.item.auction.title %>!</h1>
+    <p>
+      You have been outbid on item: <%= @bid.item.title %><br/>
+    </p>
+    <p>
+      The current high bid for this item is: <%= @bid.amount %> (you will not receive other emails on this item if you do not bid again.)<br/>
+    </p>
+    <p>
+      To place another bid, just follow this link: <%= @url %>
+    </p>
+    <p>Thank you for participating and good luck with the auction!</p>
+  </body>
+</html>

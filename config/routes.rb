@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :tags
+
+  resources :sharks
+
   get 'auctions_users/create'
 
   get 'auctions_users/destroy'
@@ -19,12 +23,12 @@ Rails.application.routes.draw do
   resources :auctions do
     member do
       get 'auction_items'
-      get 'tally'
+      get 'finalize'
     end
     resources :items
   end 
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "callbacks" }
 
   resources :users
 

@@ -1,0 +1,43 @@
+<h1>Listing tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shark</th>
+      <th>Date</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Offshore</th>
+      <th>Gt5miles</th>
+      <th>Angler</th>
+      <th>Tagger</th>
+      <th>Comments</th>
+      <th>Number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.shark_id %></td>
+        <td><%= tag.date %></td>
+        <td><%= tag.latitude %></td>
+        <td><%= tag.longitude %></td>
+        <td><%= tag.offshore %></td>
+        <td><%= tag.gt5miles %></td>
+        <td><%= tag.angler_id %></td>
+        <td><%= tag.tagger_id %></td>
+        <td><%= tag.comments %></td>
+        <td><%= tag.number %></td>
+        <td><%= link_to 'Show', tag %></td>
+        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tag', new_tag_path %>

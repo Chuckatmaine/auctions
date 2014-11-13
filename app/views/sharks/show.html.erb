@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @shark.tag_id %>
+</p>
+
+<p>
+  <strong>Species:</strong>
+  <%= @shark.species %>
+</p>
+
+<%= link_to 'Edit', edit_shark_path(@shark) %> |
+<%= link_to 'Back', sharks_path %>

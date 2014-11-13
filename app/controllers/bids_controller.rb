@@ -33,6 +33,7 @@ class BidsController < ApplicationController
     @bid = Bid.new(bid_params)
     @bid.user_id = current_user.id
     if @bid.item.buyitnow 
+      @bid.amount = @bid.item.start_bid
       @bid.item.qty -= @bid.qty
     end
     if outbid_user = outbid
@@ -52,9 +53,11 @@ class BidsController < ApplicationController
 
 end
 def outbid
-    if bid = @bid.item.bids.last 
-      return bid.user_id
-      else return 
+    unless @bid.item.is_donation || @bid.item.buyitnow
+      if bid = @bid.item.bids.last 
+        return bid.user_id
+        else return 
+      end
     end
 end
 
