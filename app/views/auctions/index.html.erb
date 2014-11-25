@@ -20,6 +20,7 @@
 
   <tbody>
     <% @auctions.each do |auction| %>
+      <% if DateTime.now > auction.start_date && DateTime.now < auction.end_date || @owner %>
       <tr>
         <td><%= image_tag auction.logo.url(:thumb) %></td>
         <td>
@@ -35,12 +36,13 @@
           <td><%= auction.display %></td>
           <td><%= auction.tally %></td>
         <% end %>
-        <td><%= link_to 'Enter Auction', auction %></td>
+        <% if auction.display %><td><%= link_to 'Enter Auction', auction %></td><% end %>
         <% if user_signed_in? %>
           <% if @owner %><td><%= link_to 'Edit', edit_auction_path(auction) %></td><% end %>
           <% if @owner %><td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
         <% end %>
        </tr>
+       <% end %>
        <% end %>
   </tbody>
 </table>

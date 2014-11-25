@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/rails/rails-observers.git
+  revision: 47323d668cf5dea9e0b0bb9ea780d112400e3a5b
+  specs:
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,10 +55,16 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     erubis (2.7.0)
+    excon (0.41.0)
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    figaro (1.0.0)
+      thor (~> 0.14)
     hashie (3.3.1)
     hike (1.2.3)
     i18n (0.6.11)
@@ -66,6 +79,11 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill_dm (1.1.0)
+      mandrill-api (~> 1.0.51)
     mime-types (1.25.1)
     minitest (5.4.1)
     multi_json (1.10.1)
@@ -170,8 +188,12 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
+  dotenv-rails
+  figaro
   jbuilder (~> 2.0)
   jquery-rails
+  mandrill-api
+  mandrill_dm
   mysql2
   omniauth
   omniauth-facebook
@@ -180,6 +202,7 @@ DEPENDENCIES
   paperclip (~> 4)
   passenger (~> 4)
   rails (= 4.1.4)
+  rails-observers!
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring

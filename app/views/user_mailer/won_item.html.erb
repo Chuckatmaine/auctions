@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>You have won auction item(s)!</h1>
+    <p>
+      You have won the items listed below on the Auction website<% @user %>.<br/>
+      <% total = 0 %>
+      <% @wonitems.each do |w| %>
+        <%= w.title %> <%= w.description %> <%= w.bids.maximum(:amount) %><br>
+        <% total += w.bids.maximum(:amount) %>
+      <% end %>
+        Total is: <%= total %>
+    </p>
+    <p>
+      Payment instructions: <%= @auction.payment %> 
+    </p>
+    <p>Thanks for participating and have a great day!</p>
+  </body>
+</html>

@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
    has_many :bids
    belongs_to :auction
    accepts_nested_attributes_for :bids
+   before_destroy :check_bids
 #   validate :minbid
 has_attached_file :picture, 
 
@@ -27,8 +28,22 @@ validates_attachment :picture,
     :presence => true,
     :size => { :in => 0..10.megabytes },
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
-  private
 
+    def highbidder
+     if self.bids.count > 0 
+       highbidder = self.bids.order('amount DESC').first.user 
+     end
+    end
+  def winbid
+    winbid = self.bids.maximum(:amount)
+  end
+  private
+    def check_bids
+      unless self.bids.count == 0
+        self.errors[:base] << "Cannot destroy items that already have bids!"
+        return false	
+      end
+    end
     def minbid
         if !self.buyitnow then
          if bids = self.bids

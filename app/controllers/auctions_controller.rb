@@ -29,6 +29,31 @@ class AuctionsController < ApplicationController
 
   def finalize 
     @auction = Auction.find(params[:id])
+    respond_to do |format|
+    @auction.display = false
+      if @auction.save
+        items = Item.where(auction_id: @auction.id)
+        winners = []
+        items.each do |i|
+          winners << i.highbidder
+        end
+        winners = winners.uniq
+        winners.each do |w|
+          wonitems = []
+          items.each do |it| 
+           if it.highbidder == w
+             wonitems << it
+           end
+          end 
+          UserMailer.won_item(@auction, wonitems, w.email)
+        end
+        format.html { redirect_to @auction, notice: 'Auction was successfully finalized and emails sent.' }
+        format.json { render :show, status: :created, location: @auction }
+      else
+        format.html { render :new }
+        format.json { render json: @auction.errors, status: :unprocessable_entity }
+      end
+    end
     
   end
 
@@ -114,6 +139,6 @@ class AuctionsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def auction_params
-      params.require(:auction).permit(:id, :title, :description, :start_date, :end_date, :display, :winner_message, :logo, :finalized, items_attributes:[:id, :title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture, :picture_file_name, :picture_contnet_type, :picture_file_size, :picture_updated_at, :qty], bids_attributes:[:id, :user_id, :item_id, :amount, :created_at, :updated_at, :qty] )
+      params.require(:auction).permit(:id, :title, :description, :start_date, :end_date, :display, :winner_message, :logo, :finalized, :payment, items_attributes:[:id, :title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture, :picture_file_name, :picture_contnet_type, :picture_file_size, :picture_updated_at, :qty], bids_attributes:[:id, :user_id, :item_id, :amount, :created_at, :updated_at, :qty] )
     end
 end

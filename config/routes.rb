@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :tags
-
-  resources :sharks
 
   get 'auctions_users/create'
 

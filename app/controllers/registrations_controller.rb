@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
       if resource.save
-        UserMailer.welcome(resource).deliver
+        UserMailer.welcome(resource).deliver unless @user.invalid?
       end
   end
    

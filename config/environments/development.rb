@@ -36,7 +36,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 #  config.action_mailer.default_url_options = { :host => 'railsme.asuscomm.com' }
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :mandrill
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true 
   config.action_mailer.default :charset => "utf-8"
@@ -45,11 +45,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address: "smtp.mandrillapp.com",
   port: 587,
-  domain: "mandrillapp.com",
-  authentication: "plain",
+  domain: "asuscomm.com",
+  authentication: "login",
   enable_starttls_auto: true,
-  user_name: ENV['GMAIL_USERNAME'],
-  password: ENV['GMAIL_PASSWORD']
+  user_name: "auctions.csbaker@gmail.com",
+  password: ENV['MANDRILL_APIKEY']
 }
 
 end

@@ -33,7 +33,11 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
-
+gem 'mandrill_dm'
+gem 'mandrill-api'
+gem 'dotenv-rails', :groups => [:development, :test, :production]
+gem 'rails-observers', git: 'https://github.com/rails/rails-observers.git'
+gem 'figaro'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

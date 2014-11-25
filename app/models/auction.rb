@@ -28,11 +28,13 @@ validates_attachment :logo,
     :presence => true,
     :size => { :in => 0..20.megabytes },
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
-
   def running?
     self.start_date < Date.today && self.end_date >= Date.today
   end
-
+ def auctioneer 
+   owner = Auctioneer.where(auction_id: self.id)
+   auctioneer = User.find(owner)
+ end
  def tally
    tally = 0
    @items = self.items.all
