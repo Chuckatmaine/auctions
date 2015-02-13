@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112181209) do
+ActiveRecord::Schema.define(version: 20150212132019) do
 
   create_table "auctioneers", force: true do |t|
     t.integer  "user_id"
@@ -73,28 +73,6 @@ ActiveRecord::Schema.define(version: 20141112181209) do
     t.integer  "qty"
     t.float    "value",                limit: 24
     t.integer  "seq"
-  end
-
-  create_table "sharks", force: true do |t|
-    t.integer  "tag_id"
-    t.string   "species"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tags", force: true do |t|
-    t.integer  "shark_id"
-    t.datetime "date"
-    t.float    "latitude",   limit: 24
-    t.float    "longitude",  limit: 24
-    t.boolean  "offshore"
-    t.boolean  "gt5miles"
-    t.integer  "angler_id"
-    t.integer  "tagger_id"
-    t.text     "comments"
-    t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

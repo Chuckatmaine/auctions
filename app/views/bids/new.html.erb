@@ -2,10 +2,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @bid.item.title %>
-</p>
-<p>
     <%= image_tag @bid.item.picture.url(:large) %>
 </p>
 
@@ -15,18 +11,23 @@
 </p>
 
 <p>
+  <strong>Auction:</strong>
+  <%= @bid.item.auction.title %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= number_to_currency(@bid.item.value) %>
+</p>
+
+<p>
   <strong>Start bid:</strong>
-  <%= @bid.item.start_bid %>
+  <%= number_to_currency(@bid.item.start_bid) %>
 </p>
 
 <p>
   <strong>Bid increment:</strong>
-  <%= @bid.item.bid_increment %>
-</p>
-
-<p>
-  <strong>Auction:</strong>
-  <%= @bid.item.auction_id %>
+  <%= number_to_currency(@bid.item.bid_increment) %>
 </p>
 
 <p>
@@ -57,5 +58,5 @@
    <%= render 'newbid' %>
 <% end %>
 <% end %>
-<%= link_to 'Items list', auction_items_auction_path(@bid.item.auction_id) %>
+<%= link_to 'Back to Items list', auction_items_auction_path(@bid.item.auction_id) %>
 <br><br>

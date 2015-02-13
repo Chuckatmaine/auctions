@@ -32,7 +32,7 @@ class AuctioneersController < ApplicationController
   # POST /auctioneers.json
   def create
     @auctioneer = Auctioneer.new(auctioneer_params)
-    @auctioneer = current_user.auctioneers.build(:auction_id => params[:auction_id])
+    #@auctioneer = current_user.auctioneers.build(:auction_id => params[:auction_id])
     respond_to do |format|
       if @auctioneer.save
         format.html { redirect_to @auctioneer, notice: 'Auctioneer was successfully created.' }

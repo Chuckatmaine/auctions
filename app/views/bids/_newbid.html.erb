@@ -12,7 +12,10 @@
     </div>
   <% end %>
   <div class="field">
-   Minimum bid is : $<%= @bid.minimum_bid %>
+    High bid is : <%= number_to_currency(@bid.item.bids.maximum(:amount)) || number_to_currency(0)%>
+  </div>
+  <div class="field">
+    Minimum bid is : <%= number_to_currency(@bid.minimum_bid) %>
   </div>
   <div class="field">
     <%= f.hidden_field :item_id, :value => @bid.item.id %>

@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   has_many :bids
   has_many :auctioneers
   has_many :auctions, through: :auctioneers
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
   # Include default devise modules. Others available are:
  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,

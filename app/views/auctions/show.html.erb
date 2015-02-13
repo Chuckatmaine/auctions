@@ -33,11 +33,7 @@
   <%= @auction.end_date %>
 </p>
 
-<p>
-  <strong>Display:</strong>
-  <%= @auction.display %>
-</p>
 <% if @owner %><%= link_to 'Edit', edit_auction_path(@auction) %><% end %> 
 <% if @owner && @auction.display %><%= link_to 'Finalize', finalize_auction_path(@auction) %><% end %> 
-<%= link_to 'Items', auction_items_auction_path(@auction) %> 
+<%= link_to 'View Items', auction_items_auction_path(@auction) %> 
 <%= link_to 'Back', auctions_path %>

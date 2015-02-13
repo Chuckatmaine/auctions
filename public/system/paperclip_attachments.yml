@@ -1,0 +1,21 @@
+---
+:Auction:
+  :logo:
+  - :auction1
+  - :large
+  - :larger
+  - :logo1
+  - :logo2
+  - :preview
+  - :retina
+  - :thumb
+:Item:
+  :picture:
+  - :auction1
+  - :large
+  - :larger
+  - :logo1
+  - :logo2
+  - :preview
+  - :retina
+  - :thumb

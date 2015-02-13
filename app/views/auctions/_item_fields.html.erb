@@ -2,6 +2,8 @@
    <fieldset>
      <%= f.label :title, "Item" %>
      <%= f.text_area :title %><br>
+     <%= f.label :seq, "Order" %>
+     <%= f.number_field :seq %><br>
      <%= f.label :picture %>
      <%= f.file_field :picture %><br>
      <%= f.label :description %>
@@ -12,6 +14,8 @@
      <%= f.number_field :qty %><br>
      <%= f.check_box :is_donation %>
      <%= f.label :is_donation, "Is a Donation" %><br>
+     <%= f.label :value %>
+     <%= f.text_field :value %>
      <%= f.label :start_bid %>
      <%= f.text_field :start_bid %>
      <%= f.label :bid_increment %>

@@ -123,6 +123,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :seq, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture,:qty, :value,auctions_attributes:[:id], bids_attributes:[:item_id, :user_id, :id, :amount, :qty])
+      params.require(:item).permit(:title, :seq, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture, :qty, :value, auctions_attributes:[:id], bids_attributes:[:item_id, :user_id, :id, :amount, :qty])
     end
 end

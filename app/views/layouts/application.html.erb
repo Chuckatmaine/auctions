@@ -39,7 +39,6 @@
       <hr>
       <% if user_signed_in? && current_user.is_admin %>
       <font color="#ff0000">Admins only</font><br>
-      <%= link_to "Admins List", users_path(is_admin: true) %><br>
       <%= link_to "Auctioneers List", auctioneers_path %><br>
       <%= link_to "Users List", users_path %><br>
       <% end %>

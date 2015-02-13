@@ -13,11 +13,11 @@
   <% end %>
   <div class="field">
     <%= f.hidden_field :item_id, :value => @bid.item.id %>
-    <%= f.label :amount, "Buy it now price is: $" %>
-    <%= @bid.item.start_bid  %><br>
+    <%= f.label :amount, "Buy it now price is: " %>
+    <%= number_to_currency(@bid.item.start_bid)  %><br>
   </div>
   <div class="field">
-    <%= f.label :qty, "Quantity to purchase (cost each: $" %><%= @bid.item.start_bid %>)<br>
+    <%= f.label :qty, "Quantity to purchase (cost each: " %><%= number_to_currency(@bid.item.start_bid) %>)<br>
     <%= f.select :qty, (1..@bid.item.qty)  %>
   </div>
   <div class="actions">

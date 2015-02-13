@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :new, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :destroy, :index]
   before_action :set_auction, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_auctioneer!, only: [:edit, :update, :new]
   before_action :authenticate_admin!, only: [:destroy]
@@ -12,7 +12,7 @@ class AuctionsController < ApplicationController
     if user_signed_in? 
       @owner = owner
     end
-    if user_signed_in? && (current_user.is_admin || current_user.is_auctioneer)
+    if (current_user.is_admin || current_user.is_auctioneer)
       @auctions = Auction.all
     else
       @auctions = Auction.where(display: true)
@@ -139,6 +139,6 @@ class AuctionsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def auction_params
-      params.require(:auction).permit(:id, :title, :description, :start_date, :end_date, :display, :winner_message, :logo, :finalized, :payment, items_attributes:[:id, :title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture, :picture_file_name, :picture_contnet_type, :picture_file_size, :picture_updated_at, :qty], bids_attributes:[:id, :user_id, :item_id, :amount, :created_at, :updated_at, :qty] )
+      params.require(:auction).permit(:id, :title, :description, :start_date, :end_date, :display, :winner_message, :logo, :finalized, :payment, items_attributes:[:id, :title, :description, :start_bid, :bid_increment, :auction_id, :is_donation, :buyitnow, :picture, :picture_file_name, :picture_contnet_type, :picture_file_size, :picture_updated_at, :qty, :seq, :value], bids_attributes:[:id, :user_id, :item_id, :amount, :created_at, :updated_at, :qty] )
     end
 end

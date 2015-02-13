@@ -1,17 +1,17 @@
 <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<h1>Listing auctions</h1>
+<h1>List of currently running auctions</h1>
 <table>
   <thead>
     <tr>
-      <th>Logo</th>
+      <th>Auction Sponsor</th>
       <th>Auctioneers</th>
       <th>Title</th>
       <th>Description</th>
       <th>Start date</th>
       <th>End date</th>
-      <% if @owner %>
+      <% if current_user.is_auctioneer %>
         <th>Enabled</th>
         <th>Tally</th>
       <% end %>
@@ -22,7 +22,7 @@
     <% @auctions.each do |auction| %>
       <% if DateTime.now > auction.start_date && DateTime.now < auction.end_date || @owner %>
       <tr>
-        <td><%= image_tag auction.logo.url(:thumb) %></td>
+        <td><%= image_tag auction.logo.url(:logo1) %></td>
         <td>
         <% auction.auctioneers.each do |auctioneer| %>
         <% fullname = auctioneer.user.first_name + ' ' + auctioneer.user.last_name%>
@@ -32,14 +32,14 @@
         <td><%= auction.description %></td>
         <td><%= auction.start_date %></td>
         <td><%= auction.end_date %></td>
-        <% if @owner %>
+        <% if current_user.is_auctioneer %>
           <td><%= auction.display %></td>
           <td><%= auction.tally %></td>
         <% end %>
         <% if auction.display %><td><%= link_to 'Enter Auction', auction %></td><% end %>
         <% if user_signed_in? %>
-          <% if @owner %><td><%= link_to 'Edit', edit_auction_path(auction) %></td><% end %>
-          <% if @owner %><td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
+          <% if current_user.is_auctioneer %><td><%= link_to 'Edit', edit_auction_path(auction) %></td><% end %>
+          <% if current_user.is_auctioneer %><td><%= link_to 'Destroy', auction, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
         <% end %>
        </tr>
        <% end %>
@@ -47,5 +47,9 @@
   </tbody>
 </table>
 <%= link_to 'Back', :back %>
+<br>
+<br>
+<br>
+<br>
 <br>
 
