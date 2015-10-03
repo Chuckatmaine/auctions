@@ -48421,3 +48421,14 @@ Migrating to DropTableSharks (20150212132019)
   [1m[35mAuctioneer Load (0.2ms)[0m  SELECT `auctioneers`.* FROM `auctioneers`  WHERE `auctioneers`.`auction_id` = 2
   [1m[36mAuctioneer Load (0.4ms)[0m  [1mSELECT `auctioneers`.* FROM `auctioneers`  WHERE `auctioneers`.`auction_id` = 1[0m
   [1m[35mAuctioneer Load (0.5ms)[0m  SELECT `auctioneers`.* FROM `auctioneers`  WHERE `auctioneers`.`auction_id` = 6
+  [1m[36mItem Load (0.5ms)[0m  [1mSELECT `items`.* FROM `items`  WHERE (13)[0m
+  [1m[35mAuction Load (0.4ms)[0m  SELECT `auctions`.* FROM `auctions`
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`   ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`   ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`   ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mBid Load (0.5ms)[0m  SELECT `bids`.* FROM `bids`  WHERE `bids`.`user_id` = 1
+  [1m[36mBid Load (0.4ms)[0m  [1mSELECT  `bids`.* FROM `bids`   ORDER BY `bids`.`id` ASC LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mBid Load (0.3ms)[0m  [1mSELECT `bids`.* FROM `bids`  WHERE `bids`.`user_id` = 1[0m
+  [1m[35m (0.5ms)[0m  SELECT SUM(`bids`.`amount`) AS sum_id FROM `bids`  WHERE `bids`.`user_id` = 1
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `bids`  WHERE `bids`.`user_id` = 1[0m

@@ -40,7 +40,7 @@
             <td>I am high bidder </td>
            <% end %>
         <% else %>
-            <td>Not Me!</td>
+            <td>I am NOT high bidder! </td>
         <% end %>
         <% if DateTime.now > @auction.start_date && DateTime.now < @auction.end_date %>
         <% if item.buyitnow  %>
